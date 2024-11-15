@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Controller;
-use Core\View\View;
-class HomeController
-{
+use Core\Http\Response;
 
-    public function index()
+class HomeController extends \Core\Controller\Controller{
+
+    public function index():Response
     {
-        View::render('/home/index',[
-            "message"=>"coucou"
-        ] );
+
+        return $this->render('/home/index.html.php', [
+
+        ]);
     }
 }
