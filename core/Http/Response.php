@@ -11,4 +11,17 @@ class Response
         View::render($templateName, $datas);
         return $this;
     }
+
+    public function redirect(?string $route = null)
+    {
+        if(!$route){
+            header("Location: index.php");
+            exit;
+        }else{
+            header("Location: {$route}");
+
+        }
+        return $this;
+
+    }
 }

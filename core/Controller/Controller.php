@@ -16,4 +16,9 @@ abstract class Controller
     {
         return $this->response->render($templateName, $datas);
     }
+
+    public function redirect(string $route = null): ?Response
+    {
+        return $this->response->redirect($route);
+    }
 }
