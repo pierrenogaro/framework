@@ -78,4 +78,56 @@ class ArticleController extends \Core\Controller\Controller {
         ]);
     }
 
+    public function delete(): Response
+    {
+        $id = $_GET['id'] ?? null;
+
+        if ($id && ctype_digit($id)) {
+            $articleRepository = new ArticleRepository();
+            $article = $articleRepository->find($id);
+
+            if ($article) {
+                $articleRepository->delete($article);
+            }
+        }
+
+        return $this->redirect("?type=article&action=index");
+    }
+
+
+    public function edit(): Response
+    {
+        $id = $_GET['id'] ?? null;
+
+        if ($id && ctype_digit($id)) {
+            $articleRepository = new ArticleRepository();
+            $article = $articleRepository->find((int)$id);
+
+            if (!$article) {
+                return $this->redirect("?type=article&action=index");
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $name = $_POST['name'] ?? null;
+                $description = $_POST['description'] ?? null;
+
+                if ($name && $description) {
+                    $article->setName($name);
+                    $article->setDescription($description);
+
+                    $articleRepository->save($article);
+
+                    return $this->redirect("?type=article&action=index");
+                }
+            }
+
+            return $this->render("article/edit", [
+                "pageTitle" => "Editer un article",
+                "article" => $article,
+            ]);
+        }
+
+        // Redirige si l'ID est invalide
+        return $this->redirect("?type=article&action=index");
+    }
 }
