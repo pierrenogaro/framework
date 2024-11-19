@@ -9,3 +9,5 @@
     </div>
 
 <?php endforeach; ?>
+
+<a href="?type=article&action=create" class="btn btn-success mt-5">Ajouter un produit</a>
