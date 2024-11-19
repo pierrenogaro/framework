@@ -13,5 +13,7 @@
             "name": "pierre"
         }
     ],
-    "require": {}
+    "require": {
+        "mongodb/mongodb": "^1.15"
+    }
 }

@@ -1,27 +1,21 @@
 <?php
 
 namespace Core\Http;
-
 use Core\View\View;
 
 class Response
 {
-    public function render($templateName, $datas)
-    {
-        View::render($templateName, $datas);
+    public function render($templateName, array $data ){
+        View::render($templateName, $data);
         return $this;
     }
-
-    public function redirect(?string $route = null)
-    {
+    public function redirect($route){
         if(!$route){
-            header("Location: index.php");
-            exit;
+            header('Location: index.html.php');
         }else{
-            header("Location: {$route}");
-
+            header('Location: '.$route);
         }
         return $this;
-
     }
+
 }

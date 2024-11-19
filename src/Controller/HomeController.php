@@ -7,7 +7,7 @@ class HomeController extends \Core\Controller\Controller{
 
     public function index():Response
     {
-        return $this->render('/home/index.html.php', [
+        return $this->render('/home/index.html.php.php', [
         ]);
     }
 }

@@ -6,8 +6,6 @@ class DotEnv
 {
 
     protected $path;
-
-
     public function __construct()
     {
 
@@ -44,6 +42,5 @@ class DotEnv
         $this->load();
         return getenv($variable);
     }
-
 
 }
