@@ -14,4 +14,29 @@ class ArticleController extends \Core\Controller\Controller {
             "articles"=>$articleRepository->findAll()
         ]);
     }
+
+    public function show(): Response
+    {
+        $id = null;
+        if (!empty($_GET['id']) && ctype_digit($_GET['id'])) {
+            $id = (int)$_GET['id'];
+        }
+
+        if (!$id) {
+            return $this->redirect();
+        }
+
+        $articleRepository = new ArticleRepository();
+        $article = $articleRepository->find($id);
+
+        if (!$article) {
+            return $this->redirect();
+        }
+
+        return $this->render("article/show", [
+            "pageTitle" => $article->getName(),
+            "article" => $article,
+        ]);
+    }
+
 }
