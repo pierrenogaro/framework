@@ -127,7 +127,6 @@ class ArticleController extends \Core\Controller\Controller {
             ]);
         }
 
-        // Redirige si l'ID est invalide
         return $this->redirect("?type=article&action=index");
     }
 }
